@@ -9,8 +9,8 @@
             <label class="label" for="email">Email</label>
             <input type="email" class="input" id="email" name="email" placeholder="Email" />
 
-            <label class="label">Password</label>
-            <input type="password" class="input" placeholder="Password" />
+            <label class="label" for="password">Password</label>
+            <input type="password" class="input" id="password" name="password" placeholder="Password" />
 
             <button class="btn btn-neutral mt-4">Login</button>
             <p class="text-center">Don't have an account?<a href="/register" class="text-blue-400 underline">

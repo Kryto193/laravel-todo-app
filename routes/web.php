@@ -14,3 +14,5 @@ Route::post('/register', [RegisterUserController::class,'register']);
 
 Route::get('/login', [SessionController::class,'open']);
 Route::post('/login', [SessionController::class,'store']);
+
+Route::delete('/logout', [SessionController::class,'logout']);
