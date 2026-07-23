@@ -7,8 +7,7 @@
             <label class="label" for="title">Title</label>
             <input type="text" for="title" name="title" class="input w-full" placeholder="Note Title" />
 
-            <label class="label">Description</label>
-            <textarea name="description" class="textarea w-full" placeholder="Write your note here"></textarea>
+            <textarea name="description" id="description" class="textarea w-full" placeholder="Write your note here"></textarea>
 
             <button type="submit" class="btn btn-neutral mt-4">Create</button>
         </fieldset>

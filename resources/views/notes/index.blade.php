@@ -1,15 +1,17 @@
 <x-layout title="Notes">
 
-    <a href="/notes/create" class="btn btn-primary mt-3">Create a new note</a>
+    <a href="/notes/create" class="btn btn-primary mt-3 mx-5 mb-4">Create a new note</a>
     @if ($notes->isNotEmpty())
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 px-5 gap-2">
             @foreach ($notes as $note)
-                <fieldset class="fieldset  w-2/3 bg-base-200 border-base-300 rounded-box  border p-4 mx-auto">
+                <fieldset class="fieldset w-full bg-base-200 border-base-300 rounded-box  border p-4 mx-auto">
                     <legend class="fieldset-legend">{{ $note->title }}</legend>
-                    <p>{{ $note->description }}</p>
+                    <p class="truncate">{{ $note->description }}</p>
                     <div class="flex">
-                        <a href="/notes/{note}/edit" class="btn">Edit</a>
-                        <form method="POST" action="/notes/{note}/delete">
+                        <a href="/notes/{{ $note->id }}" class="btn">View</a>
+
+                        <a href="/notes/{{ $note->id }}/edit" class="btn">Edit</a>
+                        <form method="POST" action="/notes/{{ $note->id }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn">Delete</button>

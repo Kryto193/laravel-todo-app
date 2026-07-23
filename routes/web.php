@@ -26,6 +26,6 @@ Route::get('/notes/create', [NoteController::class,'create']);
 Route::post('/notes/create', [NoteController::class,'store']);
 Route::get('/notes/{note}', [NoteController::class,'show']);
 Route::get('/notes/{note}/edit', [NoteController::class, 'edit']);
-Route::patch('/notes/{note}/edit', [NoteController::class,'update']);
+Route::patch('/notes/{note}', [NoteController::class,'update']);
 Route::delete('/notes/{note}', [NoteController::class,'destroy']);
 });

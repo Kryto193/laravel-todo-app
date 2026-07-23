@@ -72,17 +72,13 @@ class NoteController extends Controller
      */
     public function update(Request $request, Notes $note)
     {
-        $request->validate([
-            'title'=>['required','string'],
-            'description'=>['required','string'],
-        ]);
 
         $note->update([
-            'title'=> $request->title,
-            'description'=> $request->description,
+            'description'=> $request->updated,
         ]);
+        // $note->update(request()->all());
 
-        return redirect('/notes');
+        return redirect('/notes/'.$note->id);
     }
 
     /**
@@ -91,5 +87,6 @@ class NoteController extends Controller
     public function destroy(Notes $note)
     {
         $note->delete();
+        return redirect('/notes');
     }
 }
