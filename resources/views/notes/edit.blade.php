@@ -9,6 +9,7 @@
         <label class="label" for="title">Title</label>
         <input type="text" for="title" name="title" class="input w-full" value="{{ $note->title }}" />
 
+        
         <textarea name="updated" id="updated" class="textarea w-full" value=""> {{ $note->description }}</textarea>
 
         <button type="submit" class="btn btn-neutral mt-4">Update</button>
