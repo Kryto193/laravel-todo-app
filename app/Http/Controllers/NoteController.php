@@ -13,8 +13,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes=Notes::query()->where([
-            'user_id'=>Auth::id(),
+        $notes = Notes::query()->where([
+            'user_id' => Auth::id(),
         ])->get();
         return view("notes.index", compact("notes"));
     }
@@ -33,18 +33,17 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "title"=>["required","string"],
-            "description"=>["required","string"],
-    ]);
+            "title" => ["required", "string"],
+            "description" => ["required", "string"],
+        ]);
 
-    Notes::create([
-        "title"=> $request->title,
-        "description"=> $request->description,
-        "user_id"=>Auth::id(),
-    ]);
+        Notes::create([
+            "title" => $request->title,
+            "description" => $request->description,
+            "user_id" => Auth::id(),
+        ]);
 
-    return redirect('/notes');
-
+        return redirect('/notes');
     }
 
     /**
@@ -52,11 +51,13 @@ class NoteController extends Controller
      */
     public function show(Notes $note)
     {
-        return view('notes.show',[
-            'note'=> $note,
-        ]);
-
-    //return view("notes.show", compact('note'));
+        if ($note->user_id == Auth::id()) {
+            return view('notes.show', [
+                'note' => $note,
+            ]);
+        }
+        abort(404);
+        //return view("notes.show", compact('note'));
     }
 
     /**
@@ -64,7 +65,10 @@ class NoteController extends Controller
      */
     public function edit(Notes $note)
     {
-        return view('notes.edit', compact('note'));
+        if ($note->user_id == Auth::id()) {
+            return view('notes.edit', compact('note'));
+        }
+        abort(404);
     }
 
     /**
@@ -74,11 +78,11 @@ class NoteController extends Controller
     {
 
         $note->update([
-            'description'=> $request->updated,
+            'description' => $request->updated,
         ]);
         // $note->update(request()->all());
 
-        return redirect('/notes/'.$note->id);
+        return redirect('/notes/' . $note->id);
     }
 
     /**
