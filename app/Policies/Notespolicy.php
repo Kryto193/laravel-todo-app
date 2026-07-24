@@ -9,6 +9,11 @@ use Illuminate\Auth\Access\Response;
 class Notespolicy
 {
 
+ public function view(User $user, Notes $note)
+    {
+        return $note->user_id == $user->id ? Response::allow() : Response::denyAsNotFound() ;
+    }
+
     /**
      * Determine whether the user can update the model.
      */
@@ -16,5 +21,7 @@ class Notespolicy
     {
         return $note->user_id == $user->id ? Response::allow() : Response::denyAsNotFound() ;
     }
+
+
 
 }

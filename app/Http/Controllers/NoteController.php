@@ -55,7 +55,7 @@ class NoteController extends Controller
     {
         // if ($note->user_id == Auth::id()) {
 
-        Gate::authorize('update', $note);
+        Gate::authorize('view', $note);
             return view('notes.show', [
                 'note' => $note,
             ]);
