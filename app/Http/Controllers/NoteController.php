@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
+
 class NoteController extends Controller
 {
     /**
@@ -52,12 +53,14 @@ class NoteController extends Controller
      */
     public function show(Notes $note)
     {
-        if ($note->user_id == Auth::id()) {
+        // if ($note->user_id == Auth::id()) {
+
+        Gate::authorize('update', $note);
             return view('notes.show', [
                 'note' => $note,
             ]);
-        }
-        abort(404);
+        // }
+        // abort(404);
         //return view("notes.show", compact('note'));
     }
 
@@ -67,7 +70,7 @@ class NoteController extends Controller
     public function edit(Notes $note)
     {
         // if ($note->user_id == Auth::id()) {
-        
+
             Gate::authorize('update', $note);
             return view('notes.edit', compact('note'));
         // }
